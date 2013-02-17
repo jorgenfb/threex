@@ -348,8 +348,8 @@ THREEx.DomEvent.prototype._onTouchMove	= function(domEvent)
 
 	domEvent.preventDefault();
 
-	var mouseX	= +(domEvent.touches[ 0 ].pageX / window.innerWidth ) * 2 - 1;
-	var mouseY	= -(domEvent.touches[ 0 ].pageY / window.innerHeight) * 2 + 1;
+	var mouseX	= +((domEvent.touches[ 0 ].pageX - this._domElement.offsetLeft) / window.innerWidth ) * 2 - 1;
+	var mouseY	= -((domEvent.touches[ 0 ].pageY - this._domElement.offsetTop) / window.innerHeight) * 2 + 1;
 	return this._onMove('mousemove', mouseX, mouseY, domEvent);
 }
 
@@ -359,8 +359,8 @@ THREEx.DomEvent.prototype._onTouchEvent	= function(eventName, domEvent)
 
 	domEvent.preventDefault();
 
-	var mouseX	= +(domEvent.touches[ 0 ].pageX / window.innerWidth ) * 2 - 1;
-	var mouseY	= -(domEvent.touches[ 0 ].pageY / window.innerHeight) * 2 + 1;
+	var mouseX	= +((domEvent.touches[ 0 ].pageX - this._domElement.offsetLeft) / window.innerWidth ) * 2 - 1;
+	var mouseY	= -((domEvent.touches[ 0 ].pageY - this._domElement.offsetTop) / window.innerHeight) * 2 + 1;
 	return this._onEvent(eventName, mouseX, mouseY, domEvent);	
 }
 
