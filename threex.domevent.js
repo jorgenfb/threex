@@ -310,15 +310,23 @@ THREEx.DomEvent.prototype._onMouseUp	= function(event){ return this._onMouseEven
 
 THREEx.DomEvent.prototype._onMouseEvent	= function(eventName, domEvent)
 {
-	var mouseX	= +((domEvent.pageX - this._domElement.offsetLeft) / window.innerWidth ) * 2 - 1;
-	var mouseY	= -((domEvent.pageY - this._domElement.offsetTop) / window.innerHeight) * 2 + 1;
+	var box = this._domElement.getBoundingClientRect();
+	var left = domEvent.pageX - (box.left + window.pageXOffset - document.documentElement.clientLeft);
+	var top = domEvent.pageY - (box.top + window.pageYOffset - document.documentElement.clientTop);
+
+	var mouseX	= +(left / box.width ) * 2 - 1;
+	var mouseY	= -(top / box.height) * 2 + 1;
 	return this._onEvent(eventName, mouseX, mouseY, domEvent);
 }
 
 THREEx.DomEvent.prototype._onMouseMove	= function(domEvent)
 {
-	var mouseX	= +((domEvent.pageX - this._domElement.offsetLeft) / window.innerWidth ) * 2 - 1;
-	var mouseY	= -((domEvent.pageY - this._domElement.offsetTop) / window.innerHeight) * 2 + 1;
+	var box = this._domElement.getBoundingClientRect();
+	var left = domEvent.pageX - (box.left + window.pageXOffset - document.documentElement.clientLeft);
+	var top = domEvent.pageY - (box.top + window.pageYOffset - document.documentElement.clientTop);
+
+	var mouseX	= +(left / box.width ) * 2 - 1;
+	var mouseY	= -(top / box.height) * 2 + 1;
 	return this._onMove(mouseX, mouseY, domEvent);
 }
 
